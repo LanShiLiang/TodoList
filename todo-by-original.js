@@ -7,15 +7,16 @@
     let categorySelect = document.querySelector('#category-select')
 
     categorySelect.onclick = e => {
-      debugger
       if (e.target.matches('input')) {
+        debugger
         console.log(e)
+        //删除原先类名再添加目前选中的类名
         todoList.classList.remove('all', 'active', 'completed')
         todoList.classList.add(e.target.value)
       }
     }
 
-
+    //全选按钮
     toggleAllInput.onclick = e => {
       let completeds = todoList.querySelectorAll('li.completed')
       if (completeds.length == todoList.children.length) {
@@ -54,7 +55,8 @@
       clearCompletedBtn.style.display = 'none'
     }
 
-    function setSelectAllAndLeftCountAndClearBtn() { //关联完成与未完成的条目
+    //关联已完成与未完成的条目，同步更新全选按钮、底部待办事项计数器。
+    function setSelectAllAndLeftCountAndClearBtn() {
       let actives = todoList.querySelectorAll('input:first-child:not(:checked)')
       let completeds = todoList.querySelectorAll('input:first-child:checked')
       if (actives.length) {
@@ -80,7 +82,7 @@
 
     function addTodo(todo) {
       let todoText = todo.content
-      if (todoText.trim() !== '') { //trim()去除首尾空格判断是否为空文本
+      if (todoText.trim() !== '') { //去除首尾空格判断是否为空文本
         this.value = ''
         let li = document.createElement('li')
         li.classList.add('todo-item') //给新建的清单表项加样式
